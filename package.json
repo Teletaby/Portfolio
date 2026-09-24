@@ -1,0 +1,26 @@
+{
+  "name": "justin-gutierrez-portfolio",
+  "version": "1.0.0",
+  "description": "Interactive Portfolio Website for Justin James Gutierrez",
+  "main": "index.html",
+  "scripts": {
+    "dev": "serve .",
+    "start": "serve .",
+    "build": "echo 'Static build ready'"
+  },
+  "keywords": [
+    "portfolio",
+    "developer",
+    "full-stack",
+    "intelligent-systems",
+    "nextjs",
+    "react",
+    "vercel"
+  ],
+  "author": "Justin James Gutierrez",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
+

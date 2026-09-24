@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Justin James Gutierrez — Resume</title>
+  <meta name="description" content="Resume of Justin James Gutierrez - Computer Science Graduate, Magna Cum Laude" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card-bg: #ffffff;
+      --text-main: #111827;
+      --text-muted: #374151;
+      --accent: #2563eb;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px 40px;
+    }
+
+    /* Top Action Bar */
+    .action-bar {
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      background: rgba(17, 24, 39, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 18px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .action-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #f3f4f6;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .badge {
+      background: rgba(37, 99, 235, 0.2);
+      color: #93c5fd;
+      border: 1px solid rgba(96, 165, 250, 0.35);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e5e7eb;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    /* Resume Document Container */
+    .resume-sheet {
+      width: 100%;
+      max-width: 800px;
+      background: var(--card-bg);
+      color: #111827;
+      padding: 40px 48px;
+      border-radius: 10px;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+      line-height: 1.35;
+    }
+
+    /* Header */
+    .resume-header {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .resume-header h1 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .contact-line {
+      font-size: 0.84rem;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .contact-line a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .contact-line a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .separator {
+      color: #94a3b8;
+    }
+
+    /* Section Styles */
+    .section-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #0f172a;
+      margin-top: 11px;
+      margin-bottom: 3px;
+    }
+
+    hr {
+      border: none;
+      height: 1.25px;
+      background: #0f172a;
+      margin-bottom: 5px;
+    }
+
+    .summary-text {
+      font-size: 0.825rem;
+      color: #334155;
+      text-align: justify;
+      line-height: 1.45;
+    }
+
+    /* Experience & Education Item */
+    .resume-item {
+      margin-bottom: 5px;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .item-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .item-company {
+      font-weight: 700;
+    }
+
+    .item-role {
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .item-date {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #475569;
+      white-space: nowrap;
+    }
+
+    .item-location {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    ul.bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 2px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 14px;
+      font-size: 0.815rem;
+      color: #334155;
+      margin-bottom: 2px;
+      line-height: 1.38;
+    }
+
+    ul.bullet-list li::before {
+      content: '●';
+      position: absolute;
+      left: 1px;
+      top: -1px;
+      font-size: 0.55rem;
+      color: #0f172a;
+    }
+
+    .honors-badge {
+      display: inline-block;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* Skills Line */
+    .skills-line {
+      font-size: 0.825rem;
+      color: #334155;
+      line-height: 1.4;
+    }
+
+    /* Project Item */
+    .project-item {
+      margin-bottom: 5px;
+    }
+
+    .project-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-link {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    .project-desc {
+      font-size: 0.805rem;
+      color: #334155;
+      margin-top: 1px;
+      line-height: 1.38;
+    }
+
+    /* Print Styles */
+    @media print {
+      @page {
+        margin: 5mm 10mm;
+        size: A4 portrait;
+      }
+
+      html, body {
+        background: white !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        color: black !important;
+        height: auto !important;
+      }
+
+      .action-bar {
+        display: none !important;
+      }
+
+      .resume-sheet {
+        max-width: 100% !important;
+        box-shadow: none !important;
+        padding: 2mm 4mm !important;
+        border-radius: 0 !important;
+      }
+
+      a {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .resume-sheet {
+        padding: 24px 18px;
+      }
+
+      .item-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .action-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .action-buttons {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action Bar for Screen Viewing -->
+  <header class="action-bar" aria-label="Resume Actions">
+    <div class="action-left">
+      <span>Justin James Gutierrez</span>
+      <span class="badge">Official Resume</span>
+    </div>
+    <div class="action-buttons">
+      <a href="Justin_James_Gutierrez_Resume.pdf" download="Justin_James_Gutierrez_Resume.pdf" class="btn btn-primary" title="Download vector PDF version">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download PDF
+      </a>
+      <button onclick="window.print()" class="btn btn-secondary" title="Print document">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Print
+      </button>
+      <a href="index.html" class="btn btn-secondary" title="Return to portfolio">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Portfolio
+      </a>
+    </div>
+  </header>
+
+  <!-- Resume Sheet -->
+  <main class="resume-sheet">
+    <header class="resume-header">
+      <h1>JUSTIN JAMES GUTIERREZ</h1>
+      <div class="contact-line">
+        <span>0993-475-7875</span>
+        <span class="separator">|</span>
+        <a href="mailto:gutierrezjustinjames63@gmail.com">gutierrezjustinjames63@gmail.com</a>
+        <span class="separator">|</span>
+        <a href="https://www.linkedin.com/in/justin-james-gutierrez-6088a1280" target="_blank" rel="noopener noreferrer">linkedin.com/in/justin-james-gutierrez-6088a1280</a>
+        <span class="separator">|</span>
+        <span>Bacoor Cavite, Philippines</span>
+      </div>
+    </header>
+
+    <!-- SUMMARY -->
+    <section>
+      <h2 class="section-title">SUMMARY</h2>
+      <hr />
+      <p class="summary-text">
+        Computer Science graduate with a solid foundation in computer networks, hardware troubleshooting, and enterprise IT systems. Currently serving as a Helpdesk Technician I at Stefanini Philippines, delivering multi-channel technical support and incident management. Proven hands-on experience in IT support at SMDC and web systems administration at Knowles Training Institute, complemented by freelance media campaigns for ORIGIN and CISCO certifications in Hardware Basics and Cybersecurity.
+      </p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section>
+      <h2 class="section-title">EXPERIENCE</h2>
+      <hr />
+
+      <article class="resume-item">
+        <div class="item-header">
+          <div class="item-title"><span class="item-company">Stefanini</span> — <span class="item-role">Helpdesk Technician I</span></div>
+          <div class="item-date">September 2026 - Present</div>
+        </div>
+        <div class="item-location">Pasay City, Philippines</div>
+        <ul class="bullet-list">
+          <li>Provide technical end-user support via telephone, email, and live web chat channels</li>
+          <li>Execute restorative and maintenance actions to troubleshoot and resolve hardware, OS, and software issues</li>
+          <li>Track, categorize, and log incidents and service calls accurately within ITSM ticketing databases</li>
+          <li>Apply standardized diagnostics for PC hardware maintenance, user accounts, and enterprise software like Outlook</li>
+        </ul>
+      </article>
+
+      <article class="resume-item">
+        <div class="item-header">
+          <div class="item-title"><span class="item-company">ORIGIN</span> — <span class="item-role">Freelance Content Creator</span></div>
+          <div class="item-date">May 2026 - Present</div>
+        </div>
+        <div class="item-location">Los Angeles, CA (Remote)</div>
+        <ul class="bullet-list">
+          <li>Created and produced promotional digital media assets for artist campaigns and entertainment groups</li>
+          <li>Managed video editing and asset formatting pipelines tailored for cross-platform online distribution</li>
+          <li>Coordinated remotely with creative teams across timezones to ensure timely digital campaign delivery</li>
+        </ul>
+      </article>
+
+      <article class="resume-item">
+        <div class="item-header">
+          <div class="item-title"><span class="item-company">SMDC</span> — <span class="item-role">Technical Support Intern</span></div>
+          <div class="item-date">June 2025 - August 2025</div>
+        </div>
+        <div class="item-location">Pasay City, Philippines</div>
+        <ul class="bullet-list">
+          <li>Deployed and maintained computer systems and hardware for company-wide personnel</li>
+          <li>Managed device inventory and documentation to ensure precise equipment tracking</li>
+          <li>Resolved IT support tickets efficiently, minimizing downtime through rapid troubleshooting</li>
+          <li>Collaborated with vendors to facilitate hardware upgrades and system integrations</li>
+        </ul>
+      </article>
+
+      <article class="resume-item">
+        <div class="item-header">
+          <div class="item-title"><span class="item-company">Knowles Training Institute</span> — <span class="item-role">IT Team Lead Assistant Intern</span></div>
+          <div class="item-date">June 2024 - August 2024</div>
+        </div>
+        <div class="item-location">Singapore, Singapore</div>
+        <ul class="bullet-list">
+          <li>Maintained and optimized multiple WordPress websites to ensure high performance and security</li>
+          <li>Streamlined administrative tasks, including the processing of weekly reports</li>
+          <li>Managed offboarding documentation, specifically creating and issuing certificates for interns</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+      <h2 class="section-title">SKILLS</h2>
+      <hr />
+      <p class="skills-line">
+        Troubleshooting · Video Editing · Hardworking · Technical Proficiency · Time Management · Adaptability
+      </p>
+    </section>
+
+    <!-- EDUCATION -->
+    <section>
+      <h2 class="section-title">EDUCATION</h2>
+      <hr />
+      <article class="resume-item">
+        <div class="item-header">
+          <div class="item-title">De La Salle University - Dasmariñas</div>
+          <div class="item-date">August 2022 - August 2026</div>
+        </div>
+        <div class="item-role" style="font-size: 0.825rem; margin-top: 1px;">Bachelor of Science in Computer Science</div>
+        <ul class="bullet-list">
+          <li>Major in Intelligent Systems</li>
+          <li>Magna Cum Laude</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- PROJECTS -->
+    <section>
+      <h2 class="section-title">PROJECTS</h2>
+      <hr />
+
+      <article class="project-item">
+        <div class="project-name">
+          <span>JSquared Cinema</span>
+        </div>
+        <p class="project-desc">
+          A dynamic streaming platform for movies and series that integrates public media APIs to deliver real-time content discovery, trending titles, and detailed media metadata through a responsive and user-friendly interface.
+        </p>
+      </article>
+
+      <article class="project-item">
+        <div class="project-name">
+          <span>FallGuard</span>
+        </div>
+        <p class="project-desc">
+          A fall detection system utilizing skeleton-based Long Short-Term Memory (LSTM) models and MediaPipe to provide automated home safety monitoring and instant alerts for elderly or solo residents.
+        </p>
+      </article>
+
+      <article class="project-item">
+        <div class="project-name">
+          <span>VitalPoint</span>
+        </div>
+        <p class="project-desc">
+          A simple clinic appointment and scheduling system designed to streamline booking workflows, manage practitioner availability, and prevent double-booking through an administrative dashboard.
+        </p>
+      </article>
+
+      <article class="project-item">
+        <div class="project-name">
+          <span>KTaby</span>
+        </div>
+        <p class="project-desc">
+          A centralized discovery platform and information portal dedicated to K-Pop fans, featuring structured group profiles, member details, and integrated real-time news feeds.
+        </p>
+      </article>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section>
+      <h2 class="section-title">CERTIFICATIONS</h2>
+      <hr />
+      <ul class="bullet-list">
+        <li>Computer Hardware Basics — CISCO</li>
+        <li>Introduction to Cybersecurity — CISCO</li>
+      </ul>
+    </section>
+  </main>
+
+</body>
+</html>
+
