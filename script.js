@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('.site-header');
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
   const checkHeaderScroll = () => {
     if (window.scrollY > 20) {
@@ -67,6 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     navLinks.forEach((link) => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+
+    mobileNavLinks.forEach((link) => {
       link.classList.remove('active');
       if (link.getAttribute('href') === `#${current}`) {
         link.classList.add('active');
@@ -245,23 +253,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Mobile Menu Toggle
+  // 7. Mobile Menu Toggle & Backdrop Overlay
   const mobileToggle = document.getElementById('mobileMenuToggle');
   const mobileDrawer = document.getElementById('mobileDrawer');
+  const mobileDrawerOverlay = document.getElementById('mobileDrawerOverlay');
+
+  function closeMobileDrawer() {
+    mobileDrawer?.classList.remove('open');
+    mobileDrawerOverlay?.classList.remove('open');
+    mobileToggle?.setAttribute('aria-expanded', 'false');
+    header?.classList.remove('drawer-open');
+    document.body.classList.remove('menu-locked');
+  }
+
+  function openMobileDrawer() {
+    mobileDrawer?.classList.add('open');
+    mobileDrawerOverlay?.classList.add('open');
+    mobileToggle?.setAttribute('aria-expanded', 'true');
+    header?.classList.add('drawer-open');
+    document.body.classList.add('menu-locked');
+  }
 
   if (mobileToggle && mobileDrawer) {
     mobileToggle.addEventListener('click', () => {
-      const isOpen = mobileDrawer.classList.toggle('open');
-      mobileToggle.setAttribute('aria-expanded', isOpen);
-      header?.classList.toggle('drawer-open', isOpen);
+      const isOpen = mobileDrawer.classList.contains('open');
+      if (isOpen) {
+        closeMobileDrawer();
+      } else {
+        openMobileDrawer();
+      }
     });
 
+    mobileDrawerOverlay?.addEventListener('click', closeMobileDrawer);
+
     mobileDrawer.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileDrawer.classList.remove('open');
-        mobileToggle.setAttribute('aria-expanded', 'false');
-        header?.classList.remove('drawer-open');
-      });
+      link.addEventListener('click', closeMobileDrawer);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
+        closeMobileDrawer();
+      }
     });
   }
 
@@ -449,7 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  if (cursorCrosshair && cursorReticle) {
+  if (cursorCrosshair && cursorReticle && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
     let ringX = mouseX;
@@ -586,27 +618,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 10. Interactive 3D Card Tilt & Cursor Spotlight
-  const interactiveCards = document.querySelectorAll('.project-card, .timeline-column, .terminal-card');
-  interactiveCards.forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
+  // 10. Interactive 3D Card Tilt & Cursor Spotlight (Desktop only for smooth mobile scrolling)
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const interactiveCards = document.querySelectorAll('.project-card, .timeline-column, .terminal-card');
+    interactiveCards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -3;
-      const rotateY = ((x - centerX) / centerX) * 3;
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-    });
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -3;
+        const rotateY = ((x - centerX) / centerX) * 3;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
 
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
     });
-  });
+  }
 
 
   // 11. Scroll-to-Top Button with Circular Progress Tracking

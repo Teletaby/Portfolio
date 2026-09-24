@@ -335,8 +335,13 @@
     }
 
     @media (max-width: 640px) {
+      body {
+        padding: 12px 10px 32px;
+      }
+
       .resume-sheet {
-        padding: 24px 18px;
+        padding: 20px 14px;
+        border-radius: 8px;
       }
 
       .item-header {
@@ -346,12 +351,27 @@
 
       .action-bar {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        gap: 10px;
+        padding: 10px 14px;
+      }
+
+      .action-left {
+        justify-content: space-between;
+        width: 100%;
       }
 
       .action-buttons {
         width: 100%;
-        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .action-buttons .btn {
+        justify-content: center;
+        min-height: 40px;
+        padding: 8px 12px;
       }
     }
   </style>
